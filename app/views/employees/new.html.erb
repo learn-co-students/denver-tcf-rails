@@ -1,0 +1,5 @@
+<%= form_for @employee do |f| %>
+  <!-- <input type="text" name="employee[name]"> -->
+  Name: <%= f.text_field :name %>
+  Start Date: <%= f.datetime_field :start_date %>
+<% end %>
