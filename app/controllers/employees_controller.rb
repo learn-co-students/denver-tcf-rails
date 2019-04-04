@@ -6,8 +6,14 @@ class EmployeesController < ApplicationController
   end
 
   def create
-    Employee.create(employee_params)
-    redirect_to employees_path
+    @employee = Employee.new(employee_params)
+
+    if @employee.save
+      redirect_to employees_path
+    else
+      @departments = Department.all
+      render :new
+    end
   end
 
   def new

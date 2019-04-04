@@ -1,4 +1,13 @@
 <%= form_for @employee do |f| %>
+  <% if !@employee.errors.empty? %>
+    <ul style="background-color: pink; border-radius: 0.5rem; padding: 0.5rem; list-style-type: none;">
+      <% @employee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
     <%= f.label :name %>
     <%= f.text_field :name %>
 
@@ -9,4 +18,5 @@
     <%= f.collection_select :department_id, @departments, :id, :name %>
 
     <%= f.submit %>
+  </div>
 <% end %>

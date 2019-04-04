@@ -1,9 +1,22 @@
 <%= form_for @department do |f| %>
+  <% if !@department.errors.empty? %>
+    <ul style="background-color: pink; border-radius: 0.5rem; padding: 0.5rem; list-style-type: none;">
+      <% @department.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
     <%= f.label :name %>
     <%= f.text_field :name %>
+
     <%= f.label :head_count, "Head Count" %>
     <%= f.number_field :head_count %>
+
     <%= f.label :manager_id %>
     <%= f.collection_select :manager_id, @employees, :id, :name %>
+    
     <%= f.submit %>
+  </div>
 <% end %>

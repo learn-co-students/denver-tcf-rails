@@ -7,8 +7,14 @@ class DepartmentsController < ApplicationController
   end
 
   def create
-    Department.create(department_params)
-    redirect_to departments_path
+    @department = Department.new(department_params)
+
+    if @department.save
+      redirect_to departments_path
+    else
+      @employees = Employee.all
+      render :new
+    end
   end
 
   def new
