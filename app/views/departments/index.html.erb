@@ -1,0 +1,10 @@
+<ul>
+    <% @departments.each do |department| %>
+        <li>
+            <%= department.name %>
+        </li>
+    <% end %>
+</ul>
+
+<a href="<%= new_department_path %>">Create Department</a>
+<%= link_to  "Create Department", new_department_url %>
