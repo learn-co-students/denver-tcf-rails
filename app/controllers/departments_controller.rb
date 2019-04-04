@@ -37,7 +37,7 @@ class DepartmentsController < ApplicationController
     redirect_to departments_path
   end
 
-  private 
+  private
 
   #whitelisting what params we take in
   def department_params

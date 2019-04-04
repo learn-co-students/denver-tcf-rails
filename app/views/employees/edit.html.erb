@@ -3,7 +3,7 @@
     <%= f.text_field :name %>
 
     <%= f.label :start_date %>
-    <%= f.date_select :start_date %>
+    <%= f.date_field :start_date %>
 
     <%= f.label :department_id %>
     <%= f.collection_select :department_id, @departments, :id, :name %>
