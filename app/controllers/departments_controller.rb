@@ -1,4 +1,6 @@
 class DepartmentsController < ApplicationController
+  before_action :set_department, only: [:show, :edit, :update, :destroy]
+
   def index
     @departments = Department.all
     # render json: @departments
@@ -15,24 +17,20 @@ class DepartmentsController < ApplicationController
   end
 
   def show
-    @department = Department.find(params[:id])
   end
 
   def edit
-    @department = Department.find(params[:id])
     @employees = Employee.all
   end
 
   def update
-    department = Department.find(params[:id])
-    department.update(department_params)
+    @department.update(department_params)
 
     redirect_to departments_path
   end
 
   def destroy
-    department = Department.find(params[:id])
-    department.delete
+    @department.delete
 
     redirect_to departments_path
   end
@@ -41,7 +39,11 @@ class DepartmentsController < ApplicationController
 
   #whitelisting what params we take in
   def department_params
-    params.require( :department).permit(:name, :head_count, :manager_id)
+    params.require(:department).permit(:name, :head_count, :manager_id)
+  end
+
+  def set_department
+    @department = Department.find(params["id"])
   end
 
 end

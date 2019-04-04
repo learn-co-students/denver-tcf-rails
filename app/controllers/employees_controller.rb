@@ -1,4 +1,6 @@
 class EmployeesController < ApplicationController
+  before_action :set_employee, only: [:show, :edit, :update, :destroy]
+
   def index
     @employees = Employee.all
   end
@@ -14,24 +16,20 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    @employee = Employee.find(params[:id])
   end
 
   def edit
-    @employee = Employee.find(params[:id])
     @departments = Department.all
   end
 
   def update
-    employee = Employee.find(params[:id])
-    employee.update(employee_params)
+    @employee.update(employee_params)
 
     redirect_to employees_path
   end
 
   def destroy
-    employee = Employee.find(params[:id])
-    employee.delete
+    @employee.delete
 
     redirect_to employees_path
   end
@@ -41,4 +39,9 @@ class EmployeesController < ApplicationController
   def employee_params
     params.require( :employee).permit(:name, :start_date)
   end
+
+  def set_employee
+    @employee = Employee.find(params["id"])
+  end
+
 end
